@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -18,6 +19,7 @@ public class Office {
     private Integer floor;
 
     @OneToOne
+    @JoinColumn(name = "doctor_id")// para el dueño de la fk o la relacion
     private Doctor doctor;
 
     

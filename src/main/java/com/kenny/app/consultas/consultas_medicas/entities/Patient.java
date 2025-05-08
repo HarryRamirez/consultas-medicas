@@ -19,7 +19,7 @@ public class Patient {
     private String name;
     private String document;
 
-    @OneToMany
+    @OneToMany(mappedBy = "patient")
     private List<MedicalAppointment> medicalsAppointments;
     
     public Long getId() {

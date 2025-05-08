@@ -6,6 +6,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -21,9 +23,11 @@ public class Doctor {
     private String specialty;
 
     @ManyToMany
+    @JoinTable(name = "doctor_schedule", joinColumns = @JoinColumn(name = "doctor_id"),
+    inverseJoinColumns = @JoinColumn(name = "schedule_id"))// esto es para el que va ser el dueño de la relacion
     private List<Schedule> schedules;
 
-    @OneToOne
+    @OneToOne(mappedBy = "doctor")// para el lado contrario bidirec, el que no tien el fk
     private Office office;
 
 

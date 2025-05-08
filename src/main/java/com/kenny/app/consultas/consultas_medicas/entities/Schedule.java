@@ -21,7 +21,7 @@ public class Schedule {
     private LocalTime start_time;
     private LocalTime end_time;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "schedules")
     private List<Doctor> doctors;
     
     public Long getId() {
