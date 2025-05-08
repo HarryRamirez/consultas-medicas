@@ -1,11 +1,13 @@
 package com.kenny.app.consultas.consultas_medicas.entities;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,6 +21,8 @@ public class Schedule {
     private LocalTime start_time;
     private LocalTime end_time;
 
+    @ManyToMany
+    private List<Doctor> doctors;
     
     public Long getId() {
         return id;
@@ -43,6 +47,12 @@ public class Schedule {
     }
     public void setEnd_time(LocalTime end_time) {
         this.end_time = end_time;
+    }
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     } 
 
     

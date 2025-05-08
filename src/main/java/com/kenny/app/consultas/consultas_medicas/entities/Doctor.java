@@ -1,9 +1,13 @@
 package com.kenny.app.consultas.consultas_medicas.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -15,6 +19,13 @@ public class Doctor {
     private Long id;
     private String name;
     private String specialty;
+
+    @ManyToMany
+    private List<Schedule> schedules;
+
+    @OneToOne
+    private Office office;
+
 
     
     public Long getId() {
@@ -34,6 +45,18 @@ public class Doctor {
     }
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
+    }
+    public Office getOffice() {
+        return office;
+    }
+    public void setOffice(Office office) {
+        this.office = office;
     }
 
     
