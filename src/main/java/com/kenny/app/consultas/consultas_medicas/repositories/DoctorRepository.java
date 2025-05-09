@@ -6,4 +6,5 @@ import com.kenny.app.consultas.consultas_medicas.entities.Doctor;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long>{
 
+    boolean existsByNameIgnoreCase(String name);
 }
