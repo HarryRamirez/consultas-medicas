@@ -14,8 +14,8 @@ public class ScheduleMapper {
     public Schedule toEntity(ScheduleRequestDTO dto){
         Schedule schedule = new Schedule();
         schedule.setDay(dto.getDay());
-        schedule.setStart_time(dto.getStart_time());
-        schedule.setEnd_time(dto.getEnd_time());
+        schedule.setStartTime(dto.getStartTime());
+        schedule.setEndTime(dto.getEndTime());
         return schedule;
     }
 
@@ -25,16 +25,16 @@ public class ScheduleMapper {
         ScheduleResponseDTO dto = new ScheduleResponseDTO();
         dto.setId(schedule.getId());
         dto.setDay(schedule.getDay());
-        dto.setStart_time(schedule.getStart_time());
-        dto.setEnd_time(schedule.getEnd_time());
+        dto.setStartTime(schedule.getStartTime());
+        dto.setEndTime(schedule.getEndTime());
         return dto;
     }
 
 
     public void updateScheduleFromDto(ScheduleRequestDTO dto, Schedule schedule){
         schedule.setDay(dto.getDay());
-        schedule.setStart_time(dto.getStart_time());
-        schedule.setEnd_time(dto.getEnd_time());
+        schedule.setStartTime(dto.getStartTime());
+        schedule.setEndTime(dto.getEndTime());
     }
 
 }
