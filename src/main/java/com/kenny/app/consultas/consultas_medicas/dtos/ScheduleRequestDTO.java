@@ -5,8 +5,8 @@ import java.time.LocalTime;
 public class ScheduleRequestDTO {
 
     private String day;
-    private LocalTime start_time;
-    private LocalTime end_time;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
     
     public String getDay() {
@@ -15,18 +15,19 @@ public class ScheduleRequestDTO {
     public void setDay(String day) {
         this.day = day;
     }
-    public LocalTime getStart_time() {
-        return start_time;
+    public LocalTime getStartTime() {
+        return startTime;
     }
-    public void setStart_time(LocalTime start_time) {
-        this.start_time = start_time;
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
-    public LocalTime getEnd_time() {
-        return end_time;
+    public LocalTime getEndTime() {
+        return endTime;
     }
-    public void setEnd_time(LocalTime end_time) {
-        this.end_time = end_time;
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
     }
+
 
     
 }
