@@ -9,6 +9,17 @@ public class ScheduleResponseDTO {
     private LocalTime startTime;
     private LocalTime endTime;
     
+    
+    public ScheduleResponseDTO() {
+    }
+
+    
+    public ScheduleResponseDTO(Long id, String day, LocalTime startTime, LocalTime endTime) {
+        this.id = id;
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
     public Long getId() {
         return id;
     }
