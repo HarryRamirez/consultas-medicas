@@ -6,4 +6,5 @@ import com.kenny.app.consultas.consultas_medicas.entities.Office;
 
 public interface OfficeRepository extends JpaRepository<Office, Long>{
 
+    boolean existsByNumber(String number);
 }
