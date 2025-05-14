@@ -10,6 +10,4 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long>{
 
     
     boolean existsByDayAndStartTimeAndEndTime(String day, LocalTime startTime, LocalTime endTime);
-
-    
 }
