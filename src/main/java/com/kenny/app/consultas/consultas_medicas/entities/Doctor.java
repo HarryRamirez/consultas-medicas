@@ -63,6 +63,4 @@ public class Doctor {
         this.office = office;
     }
 
-    
-
 }
