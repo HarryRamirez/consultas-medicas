@@ -16,4 +16,5 @@ public interface DoctorService {
     DoctorResponseDetailDTO createDetails(DoctorRequestDetailDTO dto);
     DoctorResponseDTO update(Long id, DoctorRequestDTO dto);
     void delete(Long id);
+    List<DoctorResponseDTO> findByName(String name);
 }

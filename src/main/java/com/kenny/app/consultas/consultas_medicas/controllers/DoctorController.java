@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.DoctorRequestDTO;
@@ -38,8 +39,15 @@ public class DoctorController {
         return ResponseEntity.ok().body(doctorService.findDetails());
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<DoctorResponseDTO>> findByName(@RequestParam String name){
+        List<DoctorResponseDTO> results = doctorService.findByName(name);
+        return ResponseEntity.ok().body(results);
+    }
 
-    @GetMapping("/{id}")
+
+
+    @GetMapping("{id}")
     public ResponseEntity<DoctorResponseDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(doctorService.findById(id));
     }

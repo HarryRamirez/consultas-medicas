@@ -87,12 +87,7 @@ public class OfficeServiceImpl implements OfficeService{
     public void delete(Long id) {
         Office office = officeRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("No se pudo eliminar"));
-
-        Doctor doctor = office.getDoctor();
-        if(doctor != null){
-            doctor.setOffice(null);
-            office.setDoctor(null);
-        }
+        
         officeRepository.delete(office);
     }
 

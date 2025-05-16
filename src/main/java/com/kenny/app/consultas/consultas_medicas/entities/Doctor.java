@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+//import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,9 +27,10 @@ public class Doctor {
     inverseJoinColumns = @JoinColumn(name = "schedule_id"))// esto es para el que va ser el dueño de la relacion
     private List<Schedule> schedules;
 
+    /* 
     @OneToOne(mappedBy = "doctor")// para el lado contrario bidirec, el que no tien el fk
     private Office office;
-
+    */
 
     
     public Long getId() {
@@ -56,11 +57,13 @@ public class Doctor {
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
     }
+    /* 
     public Office getOffice() {
         return office;
     }
     public void setOffice(Office office) {
         this.office = office;
     }
+    */
 
 }

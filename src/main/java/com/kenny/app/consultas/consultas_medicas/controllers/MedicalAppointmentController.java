@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentResponseDTO;
+import com.kenny.app.consultas.consultas_medicas.dtos.MedicalsAppointmentDetailsDTO;
 import com.kenny.app.consultas.consultas_medicas.services.MedicalAppointmentService;
 
 @RestController
@@ -34,6 +35,11 @@ public class MedicalAppointmentController {
         return ResponseEntity.ok().body(medicalAppointmentService.findAll());
     }
 
+
+    @GetMapping("list-details")
+    public ResponseEntity<List<MedicalsAppointmentDetailsDTO>> finaAllDetails(){
+        return ResponseEntity.ok().body(medicalAppointmentService.findAllDetails());
+    }
 
 
     @GetMapping("/{id}")
