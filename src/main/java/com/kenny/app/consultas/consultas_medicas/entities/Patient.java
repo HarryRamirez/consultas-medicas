@@ -2,6 +2,7 @@ package com.kenny.app.consultas.consultas_medicas.entities;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,7 +20,7 @@ public class Patient {
     private String name;
     private String document;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicalAppointment> medicalsAppointments;
     
     public Long getId() {

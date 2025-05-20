@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentResponseDTO;
+import com.kenny.app.consultas.consultas_medicas.dtos.MedicalsAppointmentDetailsDTO;
 import com.kenny.app.consultas.consultas_medicas.entities.Doctor;
 import com.kenny.app.consultas.consultas_medicas.entities.MedicalAppointment;
 import com.kenny.app.consultas.consultas_medicas.entities.Patient;
@@ -46,8 +47,15 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService{
         .map(mapper::toDto).collect(Collectors.toList());
     }
 
+    
+    @Transactional(readOnly = true)
+    @Override
+    public List<MedicalsAppointmentDetailsDTO> findAllDetails(){
+        return medicalAppointmentRepository.findAll().stream()
+        .map(mapper::toDtoDetails).collect(Collectors.toList());
+    }
 
-
+    
 
     @Transactional(readOnly = true)
     @Override
@@ -119,8 +127,8 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService{
         .orElseThrow(() -> new ResourceNotFoundException("No se pudo eliminar"));
 
         Patient patient = meAp.getPatient();
-        if(patient != null){
-            patient.setMedicalsAppointments(null);
+        if(patient != null ){
+            patient.getMedicalsAppointments().remove(meAp);
             meAp.setPatient(null);
         }
 

@@ -37,12 +37,17 @@ public class DoctorServiceImpl implements DoctorService{
 
 
 
+
+
     @Transactional(readOnly = true)
     @Override
     public List<DoctorResponseDTO> findAll() {
         return doctorRepository.findAll().stream()
         .map(mapper::toDto).collect(Collectors.toList());
     }
+
+
+
 
     
     @Transactional(readOnly = true)
@@ -51,6 +56,8 @@ public class DoctorServiceImpl implements DoctorService{
         return doctorRepository.findAll().stream()
         .map(mapper::toDtoDetail).collect(Collectors.toList());
     }
+
+
 
 
     @Transactional(readOnly = true)
@@ -62,6 +69,9 @@ public class DoctorServiceImpl implements DoctorService{
         return mapper.toDto(doctor);
     }
 
+
+
+
     @Transactional
     @Override
     public DoctorResponseDTO create(DoctorRequestDTO dto) {
@@ -72,16 +82,16 @@ public class DoctorServiceImpl implements DoctorService{
         return mapper.toDto(doctorRepository.save(doctor));
     }
 
-    
+
+
+
+    @Transactional
     @Override
     public DoctorResponseDetailDTO createDetails(DoctorRequestDetailDTO dto) {
         // Verifica si el doctor ya existe por nombre
         if (doctorRepository.existsByNameIgnoreCase(dto.getName())) {
             throw new DuplicateResourceException("Ya hay un doctor con ese nombre");
         }
-
-        // Mapea DTO a entidad Doctor
-        Doctor doctor = mapper.toEntityDetail(dto);
 
         // Verifica que los horarios existan en la base de datos
         List<Schedule> schedules = scheduleRepository.findAllById(dto.getSchedules());
@@ -90,6 +100,10 @@ public class DoctorServiceImpl implements DoctorService{
             // Si el número de horarios encontrados no es igual al de los enviados, lanza excepción
             throw new ResourceNotFoundException("Uno o más horarios no encontrados");
         }
+
+    
+        // Mapea DTO a entidad Doctor
+        Doctor doctor = mapper.toEntityDetail(dto);
 
         // Establece la relación entre Doctor y los Schedule encontrados
         doctor.setSchedules(schedules);
@@ -101,6 +115,10 @@ public class DoctorServiceImpl implements DoctorService{
         return mapper.toDtoDetail(doctor);
     }
 
+
+
+
+    @Transactional
     @Override
     public DoctorResponseDTO update(Long id, DoctorRequestDTO dto) {
          Doctor doctor = doctorRepository.findById(id)
@@ -112,12 +130,25 @@ public class DoctorServiceImpl implements DoctorService{
 
 
 
+
+
+    @Transactional
     @Override
     public void delete(Long id) {
         Doctor doctor = doctorRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("No se pudo eliminar"));
 
         doctorRepository.delete(doctor);
+    }
+
+
+
+
+
+    @Override
+    public List<DoctorResponseDTO> findByName(String name) {
+        return doctorRepository.findByNameContainingIgnoreCase(name).stream()
+        .map(mapper::toDto).collect(Collectors.toList());
     }
 
 }

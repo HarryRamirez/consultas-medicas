@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentResponseDTO;
+import com.kenny.app.consultas.consultas_medicas.dtos.MedicalsAppointmentDetailsDTO;
 import com.kenny.app.consultas.consultas_medicas.entities.Doctor;
 import com.kenny.app.consultas.consultas_medicas.entities.MedicalAppointment;
 import com.kenny.app.consultas.consultas_medicas.entities.Patient;
@@ -43,6 +44,16 @@ public class MedicalAppointmentMapper {
         return dto;
     }
 
+    public MedicalsAppointmentDetailsDTO toDtoDetails(MedicalAppointment medicalAppointment){
+        MedicalsAppointmentDetailsDTO dto = new MedicalsAppointmentDetailsDTO();
+        dto.setId(medicalAppointment.getId());
+        dto.setDate(medicalAppointment.getDate());
+        dto.setReason(medicalAppointment.getReason());
+        dto.setDoctor(medicalAppointment.getDoctor().getName());
+        dto.setPatient(medicalAppointment.getPatient().getName());
+
+        return dto;
+    }
 
     
 
