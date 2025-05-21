@@ -1,8 +1,16 @@
 package com.kenny.app.consultas.consultas_medicas.dtos;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 public class OfficeRequestDTO {
 
+    @NotEmpty(message = "Agrega un numero")
     private String number;
+
+    @NotNull(message = "Este campo es obligatorio")
+    @Positive(message = "Debe ser mayor a 0")
     private Integer floor;
     private Long doctorId;
     

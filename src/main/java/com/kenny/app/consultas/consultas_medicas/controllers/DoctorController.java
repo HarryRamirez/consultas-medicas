@@ -21,6 +21,8 @@ import com.kenny.app.consultas.consultas_medicas.dtos.DoctorResponseDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.DoctorResponseDetailDTO;
 import com.kenny.app.consultas.consultas_medicas.services.DoctorService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/doctor")
 public class DoctorController {
@@ -54,12 +56,12 @@ public class DoctorController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<DoctorResponseDTO> create(@RequestBody DoctorRequestDTO dto){
+    public ResponseEntity<DoctorResponseDTO> create(@Valid @RequestBody DoctorRequestDTO dto){
         return ResponseEntity.ok().body(doctorService.create(dto));
     }
 
     @PostMapping("/create-details")
-    public ResponseEntity<DoctorResponseDetailDTO> createDetail(@RequestBody DoctorRequestDetailDTO dto){
+    public ResponseEntity<DoctorResponseDetailDTO> createDetail(@Valid @RequestBody DoctorRequestDetailDTO dto){
         // Llamamos al servicio para crear el Doctor y devolvemos el DTO creado
         DoctorResponseDetailDTO doctorResponse = doctorService.createDetails(dto);
 
@@ -68,7 +70,7 @@ public class DoctorController {
     }
 
     @PutMapping("update/{id}")
-    public ResponseEntity<DoctorResponseDTO> update(@PathVariable Long id, @RequestBody DoctorRequestDTO dto){
+    public ResponseEntity<DoctorResponseDTO> update(@PathVariable Long id, @Valid  @RequestBody DoctorRequestDTO dto){
         return ResponseEntity.ok().body(doctorService.update(id, dto));
     }
 

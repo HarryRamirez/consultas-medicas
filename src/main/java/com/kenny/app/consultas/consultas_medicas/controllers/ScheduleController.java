@@ -18,6 +18,8 @@ import com.kenny.app.consultas.consultas_medicas.dtos.ScheduleRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.ScheduleResponseDTO;
 import com.kenny.app.consultas.consultas_medicas.services.ScheduleService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
@@ -38,13 +40,13 @@ public class ScheduleController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<ScheduleResponseDTO> create(@RequestBody ScheduleRequestDTO dto){
+    public ResponseEntity<ScheduleResponseDTO> create(@Valid  @RequestBody ScheduleRequestDTO dto){
         return ResponseEntity.ok().body(scheduleService.create(dto));
     }
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ScheduleResponseDTO> update(@PathVariable Long id, @RequestBody ScheduleRequestDTO dto){
+    public ResponseEntity<ScheduleResponseDTO> update(@PathVariable Long id, @Valid   @RequestBody ScheduleRequestDTO dto){
         return ResponseEntity.ok().body(scheduleService.update(id, dto));
     }
 

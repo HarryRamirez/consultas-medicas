@@ -2,9 +2,17 @@ package com.kenny.app.consultas.consultas_medicas.dtos;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 public class MedicalAppointmentRequestDTO {
 
+    @NotNull(message = "Agrega una fecha")
+    @FutureOrPresent(message = "la fecha no puede ser anterior")
     private LocalDateTime date;
+
+    @NotEmpty(message = "Este capo no puede estar vacio")
     private String reason;
     private Long doctorId;
     private Long patientId;
