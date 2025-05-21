@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.PatientRequestDTO;
@@ -53,6 +54,14 @@ public class PatientController {
     public ResponseEntity<?> delete(@PathVariable Long id){
         patientService.delete(id);
         return ResponseEntity.ok().body("Eliminado con exito");
+    }
+
+
+    @GetMapping("/search")
+    public ResponseEntity<PatientResponseDTO> search(@RequestParam String document){
+        PatientResponseDTO result = patientService.search(document);
+        return ResponseEntity.ok().body(result);
+
     }
 
 }

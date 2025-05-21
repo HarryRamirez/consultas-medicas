@@ -12,4 +12,5 @@ public interface OfficeService {
     OfficeResponseDTO create(OfficeRequestDTO dto);
     OfficeResponseDTO update(Long id, OfficeRequestDTO dto);
     void delete(Long id);
+    List<OfficeResponseDTO> search(String number);
 }

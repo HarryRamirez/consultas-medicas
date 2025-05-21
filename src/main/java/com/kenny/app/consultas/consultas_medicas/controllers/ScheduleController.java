@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.ScheduleRequestDTO;
@@ -52,5 +53,12 @@ public class ScheduleController {
     public ResponseEntity<?> delete(@PathVariable Long id){
         scheduleService.delete(id);
         return ResponseEntity.ok().body("Eliminado con exito");
+    }
+
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ScheduleResponseDTO>> search(@RequestParam String day){
+        List<ScheduleResponseDTO> results = scheduleService.search(day);
+        return ResponseEntity.ok().body(results);
     }
 }

@@ -1,5 +1,6 @@
 package com.kenny.app.consultas.consultas_medicas.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -133,6 +134,14 @@ public class MedicalAppointmentServiceImpl implements MedicalAppointmentService{
         }
 
         medicalAppointmentRepository.delete(meAp);
+    }
+
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<MedicalAppointmentResponseDTO> search(LocalDateTime date) {
+         return medicalAppointmentRepository.findByDate(date).stream()
+         .map(mapper::toDto).toList();
     }
 
 }

@@ -8,4 +8,6 @@ import com.kenny.app.consultas.consultas_medicas.entities.Patient;
 public interface PatientRepository extends JpaRepository<Patient, Long>{
 
     boolean existsByDocument(String document);
+
+    Patient findByDocument(String document);
 }

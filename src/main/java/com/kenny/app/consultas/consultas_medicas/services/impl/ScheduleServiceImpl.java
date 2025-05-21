@@ -104,4 +104,15 @@ public class ScheduleServiceImpl implements ScheduleService{
         scheduleRepository.delete(schedule);
     }
 
+
+
+
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<ScheduleResponseDTO> search(String day) {
+        return scheduleRepository.findByDayContainingIgnoreCase(day).stream()
+        .map(mapper::toDto).toList();
+    }
+
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.OfficeRequestDTO;
@@ -58,5 +59,12 @@ public class OfficeController {
         officeService.delete(id);
         ok.put("message", "Eliminado exitosamente");
         return ResponseEntity.ok().body(ok);
+    }
+
+
+    @GetMapping("/search")
+    public ResponseEntity<List<OfficeResponseDTO>> search(@RequestParam String number){
+        List<OfficeResponseDTO> results = officeService.search(number);
+        return ResponseEntity.ok().body(results);
     }
 }
