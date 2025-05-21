@@ -18,6 +18,8 @@ import com.kenny.app.consultas.consultas_medicas.dtos.PatientRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.PatientResponseDTO;
 import com.kenny.app.consultas.consultas_medicas.services.PatientService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
@@ -40,13 +42,13 @@ public class PatientController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<PatientResponseDTO> create(@RequestBody PatientRequestDTO dto){
+    public ResponseEntity<PatientResponseDTO> create(@Valid  @RequestBody PatientRequestDTO dto){
         return ResponseEntity.ok().body(patientService.create(dto));
     }
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<PatientResponseDTO> update(@PathVariable Long id, @RequestBody PatientRequestDTO dto){
+    public ResponseEntity<PatientResponseDTO> update(@PathVariable Long id, @Valid  @RequestBody PatientRequestDTO dto){
         return ResponseEntity.ok().body(patientService.update(id, dto));
     }
 

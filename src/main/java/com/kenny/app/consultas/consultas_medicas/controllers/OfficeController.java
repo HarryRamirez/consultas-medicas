@@ -21,6 +21,8 @@ import com.kenny.app.consultas.consultas_medicas.dtos.OfficeRequestDTO;
 import com.kenny.app.consultas.consultas_medicas.dtos.OfficeResponseDTO;
 import com.kenny.app.consultas.consultas_medicas.services.OfficeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/office")
 public class OfficeController {
@@ -42,13 +44,13 @@ public class OfficeController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<OfficeResponseDTO> create(@RequestBody OfficeRequestDTO dto){
+    public ResponseEntity<OfficeResponseDTO> create(@Valid @RequestBody OfficeRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(officeService.create(dto));
     }
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<OfficeResponseDTO> update(@PathVariable Long id, @RequestBody OfficeRequestDTO dto){
+    public ResponseEntity<OfficeResponseDTO> update(@PathVariable Long id, @Valid  @RequestBody OfficeRequestDTO dto){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(officeService.update(id, dto));
     }
 

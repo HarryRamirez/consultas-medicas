@@ -2,8 +2,14 @@ package com.kenny.app.consultas.consultas_medicas.dtos;
 
 import java.util.List;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class DoctorRequestDetailDTO {
+
+    @NotEmpty(message = "ingresa un nombre")
     private String name;
+
+    @NotEmpty(message = "Debe asignar una especialidad")
     private String specialty;
     private List<Long> schedules;
     

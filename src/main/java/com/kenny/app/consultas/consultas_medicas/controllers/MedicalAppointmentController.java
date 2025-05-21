@@ -23,6 +23,8 @@ import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentResponse
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalsAppointmentDetailsDTO;
 import com.kenny.app.consultas.consultas_medicas.services.MedicalAppointmentService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/med-app")
 public class MedicalAppointmentController {
@@ -52,14 +54,14 @@ public class MedicalAppointmentController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<MedicalAppointmentResponseDTO> create(@RequestBody MedicalAppointmentRequestDTO dto){
+    public ResponseEntity<MedicalAppointmentResponseDTO> create(@Valid  @RequestBody MedicalAppointmentRequestDTO dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(medicalAppointmentService.create(dto));
     }
 
 
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<MedicalAppointmentResponseDTO> update(@PathVariable Long id, @RequestBody MedicalAppointmentRequestDTO dto){
+    public ResponseEntity<MedicalAppointmentResponseDTO> update(@PathVariable Long id, @Valid  @RequestBody MedicalAppointmentRequestDTO dto){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(medicalAppointmentService.update(id, dto));
     }
 
