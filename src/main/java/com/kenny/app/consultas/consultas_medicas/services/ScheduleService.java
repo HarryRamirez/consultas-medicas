@@ -12,4 +12,5 @@ public interface ScheduleService {
     ScheduleResponseDTO create(ScheduleRequestDTO dto);
     ScheduleResponseDTO update(Long id, ScheduleRequestDTO dto);
     void delete(Long id);
+    List<ScheduleResponseDTO> search(String day);
 }

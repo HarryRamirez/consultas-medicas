@@ -1,5 +1,6 @@
 package com.kenny.app.consultas.consultas_medicas.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.kenny.app.consultas.consultas_medicas.dtos.MedicalAppointmentRequestDTO;
@@ -14,4 +15,5 @@ public interface MedicalAppointmentService {
     MedicalAppointmentResponseDTO create(MedicalAppointmentRequestDTO dto);
     MedicalAppointmentResponseDTO update(Long id, MedicalAppointmentRequestDTO dto);
     void delete(Long id);
+    List<MedicalAppointmentResponseDTO> search(LocalDateTime date);
 }

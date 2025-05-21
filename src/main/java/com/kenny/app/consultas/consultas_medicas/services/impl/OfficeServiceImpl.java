@@ -91,5 +91,14 @@ public class OfficeServiceImpl implements OfficeService{
         officeRepository.delete(office);
     }
 
+    
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<OfficeResponseDTO> search(String number) {
+      return officeRepository.findByNumber(number).stream()
+      .map(mapper::toDto).collect(Collectors.toList());
+    }
+
 
 }

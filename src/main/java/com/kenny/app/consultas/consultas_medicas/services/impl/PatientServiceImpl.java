@@ -77,4 +77,11 @@ public class PatientServiceImpl implements PatientService{
         patientRepository.delete(patient);
     }
 
+
+
+    @Override
+    public PatientResponseDTO search(String document) {
+        return mapper.toDto(patientRepository.findByDocument(document));
+    }
+
 }

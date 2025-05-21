@@ -12,4 +12,5 @@ public interface PatientService {
     PatientResponseDTO create(PatientRequestDTO dto);
     PatientResponseDTO update(Long id, PatientRequestDTO dto);
     void delete(Long id);
+    PatientResponseDTO search(String document);
 }
